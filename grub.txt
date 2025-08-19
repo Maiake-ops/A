@@ -1,0 +1,26 @@
+# 1. Mount Garuda root
+sudo mount /dev/nvme0n1pX /mnt
+
+# 2. Mount EFI
+sudo mkdir -p /mnt/boot/efi
+sudo mount /dev/nvme0n1p1 /mnt/boot/efi
+
+# 3. Chroot into system
+sudo garuda-chroot /mnt
+# or on vanilla Arch: sudo arch-chroot /mnt
+
+# 4. Install GRUB and tools
+sudo pacman -Syu --noconfirm grub efibootmgr os-prober
+
+# 5. Install GRUB to EFI
+sudo grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=Garuda --recheck
+
+# 6. Detect Windows
+sudo os-prober
+
+# 7. Generate GRUB config
+sudo grub-mkconfig -o /boot/grub/grub.cfg
+
+# 8. Exit chroot and reboot
+exit
+sudo reboot
