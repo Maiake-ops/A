@@ -1,4 +1,4 @@
-#
+#!/bin/bash
 mv ~/.config/plasma-org.kde.plasma.desktop-appletsrc ~/.config/plasma-org.kde.plasma.desktop-appletsrc.bak
 mv ~/.config/kdeglobals ~/.config/kdeglobals.bak
 sudo systemctl restart sddm
