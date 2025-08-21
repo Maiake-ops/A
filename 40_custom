@@ -1,0 +1,7 @@
+menuentry "Boot Garuda ISO" {
+    set isofile="/home/maiake/i/garudaos.iso"
+    search --no-floppy --set=root --fs-uuid d052711c-eb62-4d1b-a5be-1f12645fae2d
+    loopback loop ($root)$isofile
+    linux (loop)/arch/boot/x86_64/vmlinuz-linux img_dev=/dev/disk/by-uuid/d052711c-eb62-4d1b-a5be-1f12645fae2d img_loop=$isofile earlymodules=loop
+    initrd (loop)/arch/boot/x86_64/initramfs-linux.img
+}
